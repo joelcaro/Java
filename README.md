@@ -1,2 +1,8 @@
 # Java
 Repositorio proyecto de Java 
+Objetivo. Conectar con un Web Service, parsear e interpretar la respuesta. Levantar los datos desde un archivo de configuración properties, y hacer un logger usando log4j
+1.- Crear un archivo WebServive.properties que contenga las siguientes propiedades (Clave y Valor): #URL del Web Service que devuelven las provincias de argentina en formato Json End.point.url = https://apis.datos.gob.ar/georef/api/provincias?campos=id,nombre # Time out, en segundos, que se espera a que responda el Web Service time_out = 5
+2.- Crear una clase Connect.java que conecte con el servidor, usando org.apache.http.client.methods.HttpGet La clase debe devolver un InputStream. Se deben considerar las posible excepciones (ConnectTimeoutException, SocketTimeoutException, etc…) La clase debe recibir la url y el time-out (Punto anterior - punto 1- ) Se debe loggear (usando log4j) la fecha/hora y el tiempo que se demoró en dar respuesta. (Para lo cual se deberá crear un logger –El archivo de configuración del logger, debe ser en formato properties -, el archivo log se debe llamar WSProvincias.log )
+3.- Crear una clase entidad Provincia.java que represente la estructura de la respuesta (Que contenga los atributos id y nombre, con sus respectivos get and set)
+4.- Crear una clase Parser.java que reciba un InputStream (La respuesta del web service, punto 2), que recorra el Json y devuelva una lista con las provincias. (La librería a usar debe ser org.json)
+5.- Por ultimo crear una clase Main.java que levante el properties, ejecute el Connect y parsee el resultado, recorra la lista y muestre las provincias. Además debe loggear (en WSProvincias.log) el total de provincias que arrojo la petición.
